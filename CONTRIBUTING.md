@@ -11,6 +11,8 @@
 
 New library repos follow the Adafruit/SparkFun convention: the repository name matches the library name exactly, with no `_Library` suffix. Existing `_Library` repos retain their names.
 
+The `Project-` prefix for hardware design repos is a NorthernWidget convention — it has no direct equivalent at Adafruit or SparkFun, but clearly distinguishes hardware design repos from software at a glance.
+
 ## Arduino Library Manager naming
 
 The `name=` field in `library.properties` follows separate rules from the repo name:
