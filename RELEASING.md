@@ -23,7 +23,11 @@ Every library must have:
 
 ## Pre-release checklist
 
-One commit per item:
+One commit per item.
+
+### Schema 0 baseline (all releases)
+
+Complete these before any versioned release, regardless of schema:
 
 1. **Version** — assess git history since last tag; choose semver bump; `0.x` → `1.0.0` for first stable release
 2. **`library.properties`** — bump `version=`; fill `paragraph=` if empty
@@ -35,7 +39,21 @@ One commit per item:
 8. **`doxygen_NW.cfg`** — fix known bad settings (`OPTIMIZE_OUTPUT_FOR_C = NO`; remove `MDFILE_AS_MAINPAGE`; `EXCLUDE = examples`)
 9. **Return types** — `begin()` must return `bool`; update Doxygen tags and examples
 10. **`.github/workflows/docs.yml`** — add if missing
-11. **Schema 1 compliance** — implement per [NW-Device-Specification](https://github.com/NorthernWidget/NW-Device-Specification) once the spec is stable (sensor libraries only; controllers follow a different path)
+
+Tag a Schema 0 snapshot release once items 1–10 are complete and the library has been tested on physical hardware. This snapshot preserves the last known-good register map before any breaking Schema 1 changes.
+
+### Schema 1 migration (sensor libraries only)
+
+Complete these when migrating to [NW-Device-Specification](https://github.com/NorthernWidget/NW-Device-Specification) Schema 1. Do not begin until the spec is stable and a Schema 0 snapshot tag exists.
+
+11. **Schema 1 compliance** — implement the full Schema 1 register map per the device appendix in NW-Device-Specification:
+    - **Page 0 (0x00–0x1F, EEPROM-backed identity):** schema byte `0x01` at `0x00`; 7-byte name at `0x01–0x07`; HW/FW version at `0x08–0x0A`; serial number block at `0x10–0x17`; magic byte `0x4E` at `0x1D`; CRC-8/SMBUS at `0x1E`; I²C address at `0x1F`
+    - **Page 1 (0x20–0x3F, SRAM sensor data):** status byte at `0x20` (bit 0 = ready, bit 7 = pan-fault); extended fault byte at `0x21`; sensor data from `0x22` onward per device appendix
+    - **Page 2 (0x40–0x5F, calibration, if applicable):** per device appendix
+    - Update default I²C address to the Schema 1 value from the address registry
+    - `begin()` reads schema byte; rejects non-`0x01` values
+
+Controllers (Margay, Okapi) are not sensors and do not implement the sensor register map; their Schema 1 entries are identity-only.
 
 ## Code conventions
 
