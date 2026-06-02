@@ -5,8 +5,11 @@
 | Type | Pattern | Examples |
 |------|---------|---------|
 | Hardware design | `Project-<Name>` | `Project-Margay`, `Project-Apis` |
-| Arduino library | `<Name>_Library` | `Margay_Library`, `MaxBotix_Library` |
+| Arduino library (new) | match library name | `NW_BME280`, `Walrus_Library` |
+| Arduino library (legacy) | `<Name>_Library` | `Margay_Library`, `MaxBotix_Library` |
 | NW tools / specs | `NW-<Name>` | `NW-Device-Specification`, `NW-Provision` |
+
+New library repos follow the Adafruit/SparkFun convention: the repository name matches the library name exactly, with no `_Library` suffix. Existing `_Library` repos retain their names.
 
 ## Arduino Library Manager naming
 
