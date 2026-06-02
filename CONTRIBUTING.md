@@ -29,6 +29,9 @@ Before finalizing any library name, check the [Arduino Library Manager](https://
 
 See [version-numbering-standards](https://github.com/NorthernWidget/version-numbering-standards) for the NorthernWidget versioning scheme (covers combined hardware/firmware repos as well as code-only repos).
 
-## Releasing an Arduino library
+Hardware repos (`Project-*`) use a `HWmajor.HWminor.FWversion` scheme where `FWversion` tracks the firmware burned to the sensor's onboard MCU — not the Arduino library version, which is tracked separately in the corresponding `*_Library` repo.
 
-See [RELEASING.md](RELEASING.md) for the full pre-release checklist, required files, and Schema 1 migration steps.
+## Releasing
+
+- **Arduino libraries** — see [RELEASING.md § Arduino library](RELEASING.md)
+- **Hardware design repos (`Project-*`)** — see [RELEASING.md § Hardware](RELEASING.md#releasing-nw-hardware-project-)
