@@ -28,3 +28,7 @@ Before finalizing any library name, check the [Arduino Library Manager](https://
 ## Version numbering
 
 See [version-numbering-standards](https://github.com/NorthernWidget/version-numbering-standards) for the NorthernWidget versioning scheme (covers combined hardware/firmware repos as well as code-only repos).
+
+## Releasing an Arduino library
+
+See [RELEASING.md](RELEASING.md) for the full pre-release checklist, required files, and Schema 1 migration steps.
